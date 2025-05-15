@@ -25,9 +25,30 @@ function App() {
     }
   }, [darkMode]);
   
-  // Icon declarations
-  const SunIcon = getIcon('Sun');
-  const MoonIcon = getIcon('Moon');
+  // Icon declarations with error handling
+  let SunIcon, MoonIcon;
+  
+  try {
+    SunIcon = getIcon('Sun');
+    if (!SunIcon) throw new Error('Sun icon not found');
+  } catch (error) {
+    console.error('Failed to load Sun icon:', error);
+    // Fallback icon component
+    SunIcon = ({ size, className }) => (
+      <div className={`w-${size/4} h-${size/4} rounded-full bg-yellow-300 ${className}`}></div>
+    );
+  }
+  
+  try {
+    MoonIcon = getIcon('Moon');
+    if (!MoonIcon) throw new Error('Moon icon not found');
+  } catch (error) {
+    console.error('Failed to load Moon icon:', error);
+    // Fallback icon component
+    MoonIcon = ({ size, className }) => (
+      <div className={`w-${size/4} h-${size/4} rounded-full border-2 border-surface-600 ${className}`}></div>
+    );
+  }
 
   return (
     <div className="app min-h-screen">
@@ -40,7 +61,15 @@ function App() {
               transition={{ duration: 0.5 }}
               className="text-primary-dark dark:text-primary-light"
             >
-              {getIcon('Clock')({ size: 28 })}
+              {(() => {
+                try {
+                  const ClockIcon = getIcon('Clock');
+                  return ClockIcon ? <ClockIcon size={28} /> : <span>⏰</span>;
+                } catch (error) {
+                  console.error('Failed to load Clock icon:', error);
+                  return <span>⏰</span>;
+                }
+              })()}
             </motion.div>
             <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               TimeTap
