@@ -57,9 +57,9 @@ function App() {
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
           <div className="flex items-center space-x-2">
             <motion.div 
-              initial={{ rotate: -10 }}
-              animate={{ rotate: 0 }}
-              transition={{ duration: 0.5 }}
+              initial={{ rotate: -10 }} 
+              animate={{ rotate: 0 }} 
+              transition={{ duration: 0.5 }} 
               className="text-primary-dark dark:text-primary-light"
             >
               {(() => {
