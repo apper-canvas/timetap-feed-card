@@ -7,6 +7,7 @@ import getIcon from './utils/iconUtils';
 
 // Pages
 import Home from './pages/Home';
+import BusBooking from './pages/BusBooking';
 import NotFound from './pages/NotFound';
 
 function App() {
@@ -58,6 +59,7 @@ function App() {
             <motion.div 
               initial={{ rotate: -10 }}
               animate={{ rotate: 0 }}
+            <span className="ml-2 text-xs bg-secondary text-white rounded-full px-2 py-0.5">BUS</span>
               transition={{ duration: 0.5 }}
               className="text-primary-dark dark:text-primary-light"
             >
@@ -73,11 +75,25 @@ function App() {
             </motion.div>
             <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               TimeTap
+        <nav className="container mx-auto px-4 py-2 flex border-t border-surface-200 dark:border-surface-700">
+          <ul className="flex space-x-6">
+            <li>
+              <a href="/" className="text-sm font-medium hover:text-primary">Home</a>
+            </li>
+            <li>
+              <a href="/bus" className="text-sm font-medium hover:text-primary">Bus Booking</a>
+            </li>
+            <li>
+              <a href="#" className="text-sm font-medium hover:text-primary">Train Booking</a>
+            </li>
+          </ul>
+        </nav>
             </h1>
           </div>
           
           <button 
             onClick={toggleDarkMode}
+          <Route path="/bus/*" element={<BusBooking />} />
             className="w-10 h-10 rounded-full flex items-center justify-center bg-surface-100 dark:bg-surface-700 hover:bg-surface-200 dark:hover:bg-surface-600 transition-colors"
             aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
           >
